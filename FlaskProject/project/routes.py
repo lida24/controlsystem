@@ -76,3 +76,12 @@ def work_page():
             flash(f'Произошла ошибка добавления новой детали: {err_msg}', category='danger')
 
     return render_template('work.html', form=form)
+
+@app.route('/components')
+def components_page():
+    components = Components.query.all()
+    return render_template('components.html', components=components)
+
+@app.route('/testing')
+def testing_page():
+    return render_template('testing.html')
