@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Project Page
+{% endblock %}
+{% block content %}
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <!-- Your Columns HERE -->
+            <th scope="col">id</th>
+            <th scope="col">qr-code</th>
+            <th scope="col">component type</th>
+            <th scope="col">add to-the-base timestamp</th>
+            <th scope="col">component status</th>
+            <th scope="col">status change timestamp</th>
+            <th scope="col">link to test results</th>
+            <th scope="col">remark</th>
+            <th scope="col">owner</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Your rows inside the table HERE: -->
+        {% for component in components %}
+            <tr>
+                <td>{{ component.id }}</td>
+                <td>{{ component.qrcode }}</td>
+                <td>{{ component.ctype }}</td>
+                <td>{{ component.addts }}</td>
+                <td>{{ component.cstat }}</td>
+                <td>{{ component.statts }}</td>
+                <td>{{ component.tests }}</td>
+                <td>{{ component.rem }}</td>
+                <td>{{ component.owner }}</td>
+                <td>
+                    <button class="btn btn-outline btn-info">Больше информации</button>
+                    <button class="btn btn-outline btn-success">???</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
