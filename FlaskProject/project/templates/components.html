@@ -7,31 +7,22 @@
     <thead>
         <tr>
             <!-- Your Columns HERE -->
-            <th scope="col">id</th>
-            <th scope="col">qr-code</th>
-            <th scope="col">component type</th>
-            <th scope="col">add to-the-base timestamp</th>
-            <th scope="col">component status</th>
-            <th scope="col">status change timestamp</th>
-            <th scope="col">link to test results</th>
-            <th scope="col">remark</th>
-            <th scope="col">owner</th>
-            <th scope="col">Options</th>
+            <th scope="col">Изделие</th>
+            <th scope="col">QR-код</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Ссылка на результаты теста</th>
+            <th scope="col">Комментарий</th>
+            <th scope="col">Опции</th>
         </tr>
     </thead>
     <tbody>
         <!-- Your rows inside the table HERE: -->
         {% for component in components %}
-            <tr>
-                <td>{{ component.id }}</td>
-                <td>{{ component.qrcode }}</td>
                 <td>{{ component.ctype }}</td>
-                <td>{{ component.addts }}</td>
+                <td>{{ component.qrcode }}</td>
                 <td>{{ component.cstat }}</td>
-                <td>{{ component.statts }}</td>
                 <td>{{ component.tests }}</td>
                 <td>{{ component.rem }}</td>
-                <td>{{ component.owner }}</td>
                 <td>
                     <a class="btn btn-outline btn-info" href="{{ url_for('testing_page') }}">Протестировать</a>
                 </td>
