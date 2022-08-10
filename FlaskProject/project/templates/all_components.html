@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    All Components
+{% endblock %}
+{% block content %}
+    <h3>Все компоненты</h3>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">Изделие</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Опции</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Your rows inside the table HERE: -->
+            {% for component in components %}
+                    <td>{{ component.decoding }}</td>
+                    <td>{{ component.count }}</td>
+                    <td>
+                        <a class="btn btn-outline btn-info" href="{{ url_for('current_component_page', component_id=component.id)}}">Просмотреть</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

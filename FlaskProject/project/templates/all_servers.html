@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    All Servers
+{% endblock %}
+{% block content %}
+    <h3>Все серверы</h3>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">id</th>
+                <th scope="col">Серверы</th>
+                <th scope="col">Опции</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Your rows inside the table HERE: -->
+            {% for server in servers %}
+                    <td>{{ server.id }}</td>
+                    <td>
+                        {% for component in server.cmps %}
+                            {{ component.ctype }}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a class="btn btn-outline btn-info" href="#">Просмотреть</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

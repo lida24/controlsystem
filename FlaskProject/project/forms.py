@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField
+from sqlalchemy import Integer
+from wtforms import StringField, PasswordField, SubmitField, SelectField, IntegerField, FloatField
 from wtforms.validators import Length, EqualTo, DataRequired, ValidationError
 from project.models import Plant, Components
 
@@ -31,4 +32,22 @@ class AddComponentForm(FlaskForm):
 
         qrcode = StringField(label='QR-код', validators=[DataRequired()])
         ctype = SelectField(label='Выберите тип компонента', validators=[DataRequired()], choices=[])
+        submit = SubmitField(label='Добавить')
+
+class PowerSupplyTestingForm(FlaskForm):
+        p = FloatField(label='Параметр', validators=[DataRequired()])
+        submit = SubmitField(label='Отправить')
+
+class PowerManagementModuleTestingForm(FlaskForm):
+        p1 = FloatField(label='Параметр 1', validators=[DataRequired()])
+        p2 = FloatField(label='Параметр 2', validators=[DataRequired()])
+        p3 = FloatField(label='Параметр 3', validators=[DataRequired()])
+        submit = SubmitField(label='Отправить')
+
+class HandleTestingForm(FlaskForm):
+        submit_success = SubmitField(label='Годен')
+        submit_failure = SubmitField(label='Не годен')
+
+class ComponentSearchForm(FlaskForm):
+        search = StringField(label='QR-код', validators=[DataRequired()])
         submit = SubmitField(label='Добавить')

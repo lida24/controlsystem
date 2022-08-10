@@ -2,3 +2,57 @@
 {% block title %}
     Testing Page
 {% endblock %}
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            {% if component.ctype == 'power_supply_2k6' %}
+                <h1 class="h3 mb-3 font-weight-normal">
+                    Введите параметр изделия
+                </h1>
+
+                <br>
+                
+                {{ form.p.label() }}
+                {{ form.p(class="form-control", placeholder="Параметр") }}
+
+                <br>
+
+                {{ form.submit(class="btn btn-primary") }}
+
+            {% elif component.ctype == 'power_management_module' %}
+
+                <br>
+
+                <h1 class="h3 mb-3 font-weight-normal">
+                    Введите параметры изделия
+                </h1>
+                
+                {{ form.p1.label() }}
+                {{ form.p1(class="form-control", placeholder="Параметр 1") }}
+
+                {{ form.p2.label() }}
+                {{ form.p2(class="form-control", placeholder="Параметр 2") }}
+
+                {{ form.p3.label() }}
+                {{ form.p3(class="form-control", placeholder="Параметр 3") }}
+
+                <br>
+
+                {{ form.submit(class="btn btn-primary") }}
+            
+            {% elif component.ctype == 'fan_140' or component.ctype == 'fan_40' or component.ctype == 'chassis' or component.ctype == 'indicator_board' or component.ctype == 'fan_control_board' %}
+
+            <h1 class="h3 mb-3 font-weight-normal">
+                Нажмите кнопку ниже
+            </h1>
+
+                <input type="submit" name="action" value="Годен" class="btn btn-success">
+                <input type="submit" name="action" value="Не годен" class="btn btn-failure">
+
+            {% endif %}
+        </form>
+    </div>
+</body>
+{% endblock %}

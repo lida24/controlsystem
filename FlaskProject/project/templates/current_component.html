@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ comptypes.name }} Page
+{% endblock %}
+{% block content %}
+    <h3>{{ comptypes.decoding }}</h3>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">Заключение</th>
+                <th scope="col">QR-код</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Ссылка на результаты теста</th>
+                <th scope="col">Комментарий</th>
+                <th scope="col">Опции</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Your rows inside the table HERE: -->
+            {% for component in comptypes.components %}
+                    <td>{{ component.conclusion }}</td>
+                    <td>{{ component.qrcode }}</td>
+                    <td>{{ component.cstat }}</td>
+                    
+                    {% if component.cstat == 'протестирован' or component.cstat == 'забракован' %}
+                        {% if component.ctype == 'power management module' or component.ctype == 'power_supply_2k6' %}
+                            <td><a class="btn btn-outline btn-info" href="{{ component.tests }}">{{ component.tests }}</a></td>
+                        {% else %}
+                            <td><a class="btn btn-outline btn-info disabled" href="{{ component.tests }}">{{ component.tests }}</a></td>
+                        {% endif %}
+                        <td><a class="btn btn-outline btn-info" href="{{ component.rem }}">{{ component.rem }}</a></td>
+                        <td>
+                        <a class="btn btn-outline btn-info disabled">Протестировать</a>
+                    {% else %}
+                        <td><a class="btn btn-outline btn-info disabled" href="{{ component.tests }}">{{ component.tests }}</a></td>
+                        <td><a class="btn btn-outline btn-info disabled" href="{{ component.rem }}">{{ component.rem }}</a></td>
+                        <td>
+                        <a class="btn btn-outline btn-info" href="{{ url_for('testing_page', component_id=component.id) }}">Протестировать</a>
+                    {% endif %}
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

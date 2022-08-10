@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}
-    Login Page
+    Add Fan 140 Page
 {% endblock %}
-
 {% block content %}
 <body class="text-center">
     <div class="container">
@@ -19,23 +18,21 @@
                 </svg>
                 
             <h1 class="h3 mb-3 font-weight-normal">
-                Войдите в систему
+                {% if count == 1 %}
+                    Введите QR-код первого верхнего вентилятора
+                {% elif count == 2 %}
+                    Введите QR-код второго верхнего вентилятора
+                {% elif count == 3 %}
+                    Введите QR-код третьего верхнего вентилятора
+                {% endif %}
             </h1>
-            <br>
-            {{ form.username.label() }}
-            {{ form.username(class="form-control", placeholder="Имя пользователя") }}
 
-            {{ form.password.label() }}
-            {{ form.password(class="form-control", placeholder="Пароль") }}
+            {{ form.search.label() }}
+            {{ form.search(class="form-control", placeholder="QR-код") }}
 
             <br>
 
-            <div class="checkbox mb-3">
-                <h6>Нет аккаунта?</h6>
-                <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page') }}">Зарегистрироваться</a>
-            </div>
-
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            {{ form.submit(class="btn btn-primary") }}
 
         </form>
     </div>

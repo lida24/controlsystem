@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+    Test Results Page
+{% endblock %}
+{% block content %}
+ {% for c in component %}
+    <h1>{{ c }}</h1>
+ {% endfor %}
+{% endblock %}
